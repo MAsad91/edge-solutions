@@ -1,0 +1,2 @@
+﻿import { GlowButton } from '@/components/ui/GlowButton';
+export default function CTASection(){return <section className='mx-6 rounded-3xl border border-cyan-500/30 bg-gradient-to-r from-cyan-900/30 to-slate-900 p-10 text-center'><h2 className='font-[family-name:var(--font-space)] text-3xl font-bold text-white'>Need a dependable MSP partner?</h2><p className='mt-3 text-slate-300'>Book a consultation and get a practical roadmap tailored to your environment.</p><div className='mt-6'><GlowButton>Book a Consultation</GlowButton></div></section>}

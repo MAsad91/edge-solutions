@@ -1,0 +1,3 @@
+﻿import CTASection from '@/components/sections/CTASection';
+export const metadata = { title: 'Careers | Hum Edge Solutions (Pvt) Ltd', description: 'Join a team delivering mission-critical infrastructure and security outcomes.' };
+export default function Page(){ return <section className='mx-auto max-w-5xl px-6 py-20'><h1 className='text-4xl font-bold'>Build systems that matter.</h1><p className='mt-4 text-slate-300'>Work with architects, operators, and security specialists solving enterprise-scale challenges with measurable impact.</p><p className='mt-3 text-slate-400'>Hiring process: Intro call, technical conversation, collaborative scenario round, and final culture discussion.</p><CTASection/></section>; }

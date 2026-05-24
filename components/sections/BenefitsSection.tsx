@@ -1,0 +1,5 @@
+﻿'use client';
+import { motion, useReducedMotion } from 'framer-motion';
+import { maskReveal, staggerIn } from '@/lib/motion';
+
+export default function BenefitsSection(){const reduce=useReducedMotion(); const items=['Senior engineering ownership','Transparent delivery cadence','Security-first architecture'];return <section className='mx-auto max-w-7xl px-6 py-20'><motion.div className='grid gap-6 md:grid-cols-3' variants={staggerIn(0.1)} initial={reduce?undefined:'hidden'} whileInView={reduce?undefined:'visible'} viewport={{once:true,amount:0.2}}>{items.map((i)=><motion.article key={i} variants={maskReveal} whileHover={reduce?undefined:{y:-4}} className='rounded-2xl border border-slate-700 bg-[#0f1420] p-6'><div className='mb-4 h-1 w-16 bg-cyan-400 shadow-[0_0_20px_rgba(0,180,240,.5)]'/><h3 className='text-xl text-white'>{i}</h3><p className='mt-2 text-slate-400'>Purpose-built solutions for enterprises where reliability and speed both matter.</p></motion.article>)}</motion.div></section>}
