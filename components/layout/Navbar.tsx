@@ -77,16 +77,16 @@ export default function Navbar() {
   return (
     <motion.header initial={reduceMotion ? undefined : { opacity: 0, y: -20 }} animate={reduceMotion ? undefined : { opacity: 1, y: 0 }} className='fixed top-0 z-50 w-full'>
       <div ref={navShellRef} className='relative'>
-        <nav className='mx-auto flex max-w-[1680px] items-center justify-between px-6 py-4 md:px-10 md:py-5'>
-          <Link href='/' className='font-bold tracking-tight text-slate-100'>
+        <nav className='mx-auto flex max-w-[1680px] items-center justify-between px-4 py-3 sm:px-6 sm:py-4 md:px-10 md:py-5'>
+          <Link href='/' className='max-w-[58vw] truncate text-sm font-bold tracking-tight text-slate-100 sm:max-w-none sm:text-base'>
             {COMPANY.name}
           </Link>
 
           <div className='hidden flex-1 justify-center md:flex'>
             <div className='relative'>
               <div className={`absolute inset-0 rounded-[999px] ${solid || isServicesOpen ? 'bg-cyan-500/10 blur-xl' : 'bg-transparent'}`} />
-              <div className={`relative rounded-[999px] border px-10 py-3.5 backdrop-blur-2xl transition ${solid || isServicesOpen ? 'border-cyan-400/30 bg-[#101a31]/80 shadow-[inset_0_1px_0_rgba(255,255,255,.07),0_0_30px_rgba(34,211,238,.15)]' : 'border-white/12 bg-[#101a31]/60 shadow-[inset_0_1px_0_rgba(255,255,255,.05)]'}`}>
-                <div className='flex items-center gap-10'>
+              <div className={`relative rounded-[999px] border px-8 py-3.5 backdrop-blur-2xl transition ${solid || isServicesOpen ? 'border-cyan-400/30 bg-[#101a31]/80 shadow-[inset_0_1px_0_rgba(255,255,255,.07),0_0_30px_rgba(34,211,238,.15)]' : 'border-white/12 bg-[#101a31]/60 shadow-[inset_0_1px_0_rgba(255,255,255,.05)]'}`}>
+                <div className='flex items-center gap-9'>
                   <div className='relative' onMouseEnter={openServices} onMouseLeave={scheduleCloseServices} onFocusCapture={openServices} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) scheduleCloseServices(); }}>
                     <button type='button' aria-haspopup='menu' aria-expanded={isServicesOpen} aria-controls={MEGA_MENU_ID} className='inline-flex items-center gap-1 text-[15px] font-medium text-slate-200 transition hover:text-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60'>
                       Services
@@ -111,7 +111,7 @@ export default function Navbar() {
             <GlowButton variant='orange' effect='shimmer'>Get Started</GlowButton>
           </div>
 
-          <button className='text-slate-100 md:hidden' onClick={() => setMobileOpen((prev) => !prev)} aria-expanded={mobileOpen} aria-label='Toggle mobile menu' type='button'>
+          <button className='rounded-lg p-2 text-slate-100 md:hidden' onClick={() => setMobileOpen((prev) => !prev)} aria-expanded={mobileOpen} aria-label='Toggle mobile menu' type='button'>
             {mobileOpen ? <X /> : <Menu />}
           </button>
         </nav>
@@ -125,9 +125,7 @@ export default function Navbar() {
                     <h4 className='mb-2 text-sm font-semibold text-cyan-300'>{category.title}</h4>
                     <ul className='space-y-1 text-xs text-slate-400'>
                       {category.items.map((item) => (
-                        <li key={item}>
-                          <Link href='/services' className='hover:text-slate-200'>{item}</Link>
-                        </li>
+                        <li key={item}><Link href='/services' className='hover:text-slate-200'>{item}</Link></li>
                       ))}
                     </ul>
                   </div>
@@ -139,24 +137,24 @@ export default function Navbar() {
 
         <AnimatePresence>
           {mobileOpen && (
-            <motion.div initial={reduceMotion ? undefined : { x: '100%' }} animate={reduceMotion ? undefined : { x: 0 }} exit={reduceMotion ? undefined : { x: '100%' }} transition={{ duration: 0.22, ease: 'easeOut' }} className='fixed inset-0 z-50 bg-[#080b14] p-8 md:hidden'>
-              <div className='mb-6 flex items-center justify-between'>
-                <p className='font-semibold text-slate-100'>{COMPANY.name}</p>
-                <button type='button' className='text-slate-100' onClick={() => setMobileOpen(false)} aria-label='Close menu'><X /></button>
+            <motion.div initial={reduceMotion ? undefined : { x: '100%' }} animate={reduceMotion ? undefined : { x: 0 }} exit={reduceMotion ? undefined : { x: '100%' }} transition={{ duration: 0.22, ease: 'easeOut' }} className='fixed inset-0 z-50 overflow-y-auto bg-[#080b14] p-6 pb-24 sm:p-8 md:hidden'>
+              <div className='mb-5 flex items-center justify-between'>
+                <p className='max-w-[70vw] truncate text-base font-semibold text-slate-100'>{COMPANY.name}</p>
+                <button type='button' className='rounded-lg p-2 text-slate-100' onClick={() => setMobileOpen(false)} aria-label='Close menu'><X /></button>
               </div>
 
-              <button type='button' onClick={() => setIsMobileServicesOpen((prev) => !prev)} className='mb-2 flex w-full items-center justify-between text-left text-2xl text-slate-100' aria-expanded={isMobileServicesOpen}>
+              <button type='button' onClick={() => setIsMobileServicesOpen((prev) => !prev)} className='mb-2 flex w-full items-center justify-between rounded-xl border border-slate-700 bg-[#0f1420] px-4 py-3 text-left text-xl text-slate-100' aria-expanded={isMobileServicesOpen}>
                 Services
                 <ChevronDown className={`h-5 w-5 transition ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {isMobileServicesOpen && (
-                <div className='mb-4 max-h-52 overflow-auto rounded-xl border border-slate-700 bg-[#0f1420] p-4'>
+                <div className='mb-4 max-h-56 overflow-auto rounded-xl border border-slate-700 bg-[#0f1420] p-4'>
                   {SERVICE_CATEGORIES.map((category) => (
                     <div key={`mobile-${category.title}`} className='mb-3 last:mb-0'>
                       <p className='mb-1 text-sm font-semibold text-cyan-300'>{category.title}</p>
                       {category.items.map((item) => (
-                        <Link key={`mobile-${category.title}-${item}`} href='/services' onClick={closeAllMenus} className='block text-sm text-slate-300'>{item}</Link>
+                        <Link key={`mobile-${category.title}-${item}`} href='/services' onClick={closeAllMenus} className='block py-1 text-sm text-slate-300'>{item}</Link>
                       ))}
                     </div>
                   ))}
@@ -164,7 +162,9 @@ export default function Navbar() {
               )}
 
               {desktopItems.map((n) => (
-                <Link key={`mobile-${n.href}`} href={n.href} onClick={closeAllMenus} className='mb-4 block text-2xl text-slate-100'>{n.label}</Link>
+                <Link key={`mobile-${n.href}`} href={n.href} onClick={closeAllMenus} className='mb-3 block rounded-xl border border-slate-800 bg-[#0f1420] px-4 py-3 text-xl text-slate-100'>
+                  {n.label}
+                </Link>
               ))}
             </motion.div>
           )}
